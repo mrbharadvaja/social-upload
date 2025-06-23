@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | MrBharadvaja</title>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      margin-top: 20px;
+    }
+    .history {
+      margin-top: 30px;
+    }
+    .history h3 {
+      margin-bottom: 10px;
+    }
+    .history ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .history li {
+      padding: 10px;
+      background: #f1f1f1;
+      margin-bottom: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📤 Post to All Platforms</h2>
+    <form id="postForm">
+      <label for="video">Upload Video:</label>
+      <input type="file" id="video" accept="video/*" required>
+
+      <label for="ytTitle">YouTube Title:</label>
+      <input type="text" id="ytTitle" required>
+
+      <label for="ytDesc">YouTube Description:</label>
+      <textarea id="ytDesc" rows="4"></textarea>
+
+      <label for="caption">Instagram/Facebook Caption:</label>
+      <textarea id="caption" rows="3"></textarea>
+
+      <label for="schedule">Schedule Post (Optional):</label>
+      <input type="datetime-local" id="schedule">
+
+      <button type="submit">Post Now</button>
+    </form>
+
+    <div class="history">
+      <h3>📜 Post History</h3>
+      <ul id="postHistory">
+        <li>Example: Posted to YouTube and Instagram on 2025-06-21 10:30</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('postForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('ytTitle').value;
+      const desc = document.getElementById('ytDesc').value;
+      const caption = document.getElementById('caption').value;
+      const schedule = document.getElementById('schedule').value;
+      const video = document.getElementById('video').files[0];
+
+      if (!video) {
+        alert('Please upload a video.');
+        return;
+      }
+
+      const list = document.createElement('li');
+      list.textContent = `✅ Scheduled Post: ${title} on ${schedule || 'now'} (Caption: ${caption})`;
+      document.getElementById('postHistory').appendChild(list);
+      alert('This is a demo. Real API connection in backend is in progress.');
+    });
+  </script>
+</body>
+</html>
