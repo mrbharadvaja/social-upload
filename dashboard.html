@@ -25,7 +25,7 @@
       display: block;
       margin-top: 10px;
     }
-    input, textarea, button {
+    input, textarea, select, button {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -70,6 +70,13 @@
       <label for="ytDesc">YouTube Description:</label>
       <textarea id="ytDesc" rows="4"></textarea>
 
+      <label for="visibility">YouTube Visibility:</label>
+      <select id="visibility">
+        <option value="public">Public</option>
+        <option value="unlisted">Unlisted</option>
+        <option value="private">Private</option>
+      </select>
+
       <label for="caption">Instagram/Facebook Caption:</label>
       <textarea id="caption" rows="3"></textarea>
 
@@ -93,6 +100,7 @@
       const title = document.getElementById('ytTitle').value;
       const desc = document.getElementById('ytDesc').value;
       const caption = document.getElementById('caption').value;
+      const visibility = document.getElementById('visibility').value;
       const schedule = document.getElementById('schedule').value;
       const video = document.getElementById('video').files[0];
 
@@ -102,9 +110,10 @@
       }
 
       const list = document.createElement('li');
-      list.textContent = `✅ Scheduled Post: ${title} on ${schedule || 'now'} (Caption: ${caption})`;
+      list.textContent = `✅ Scheduled Post: "${title}" (${visibility}) on ${schedule || 'now'} (Caption: ${caption})`;
       document.getElementById('postHistory').appendChild(list);
-      alert('This is a demo. Real API connection in backend is in progress.');
+
+      alert('This is a demo. Real API backend is still being built.');
     });
   </script>
 </body>
